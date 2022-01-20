@@ -23,8 +23,15 @@ namespace basic_webapi.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var types = _context.Types.ToList();
-            return Ok(types);
+            try
+            {
+                var types = _context.Types.ToList();
+                return Ok(types);
+            }catch (Exception)
+            {
+                return BadRequest();
+            }
+            
         }
 
         [HttpGet("{id}")]
@@ -50,7 +57,7 @@ namespace basic_webapi.Controllers
                 _context.Add(type);
                 _context.SaveChanges();
 
-                return Ok(type);
+                return StatusCode(StatusCodes.Status201Created, type);
             }
             catch (Exception)
             {
