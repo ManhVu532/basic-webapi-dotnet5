@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,5 +21,11 @@ namespace basic_webapi.Datas
         [ForeignKey("TypeId")]
         public Type Type { get; set; }
 
+        public ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public Product()
+        {
+            OrderDetails =  new List<OrderDetail>();
+        }
     }
 }
