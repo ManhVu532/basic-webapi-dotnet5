@@ -1,4 +1,5 @@
 using basic_webapi.Datas;
+using basic_webapi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,8 @@ namespace basic_webapi
             {
                 option.UseSqlServer(Configuration.GetConnectionString("MyDB"));
             });
+            services.AddScoped<ITypeRepository, TypeRepository>();
+            //services.AddScoped<ITypeRepository, InMemTypeRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
