@@ -34,6 +34,7 @@ namespace basic_webapi
                 option.UseSqlServer(Configuration.GetConnectionString("MyDB"));
             });
             services.AddScoped<ITypeRepository, TypeRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             //services.AddScoped<ITypeRepository, InMemTypeRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
